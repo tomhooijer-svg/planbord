@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<!-- Er staan klaslijsten achter deze app. robots.txt werkt niet voor een
+     projectsite (die moet op de domeinwortel staan), dus zeggen we het hier. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%23fbf8f4%22/%3E%3Ccircle%20cx=%2221%22%20cy=%2221%22%20r=%229%22%20fill=%22%233b6ff0%22/%3E%3Ccircle%20cx=%2243%22%20cy=%2221%22%20r=%229%22%20fill=%22%23e79a1f%22/%3E%3Ccircle%20cx=%2221%22%20cy=%2243%22%20r=%229%22%20fill=%22%232e9e6b%22/%3E%3Ccircle%20cx=%2243%22%20cy=%2243%22%20r=%229%22%20fill=%22%23b8436d%22/%3E%3C/svg%3E">
+<title>Schoolbeheer — Keuzebord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=optional">
+<link rel="stylesheet" href="src/kb-stijl.css?v=26augustus2026">
+<style>
+body{ background: var(--vlak-2); }
+.knoprij{ display:flex; gap:10px; flex-wrap:wrap; }
+
+.groepen{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.groepkaart{ background:var(--vlak); border-radius:var(--rond-m); box-shadow:var(--schaduw-1);
+             padding:18px 20px; display:flex; flex-direction:column; gap:12px;
+             border-top:4px solid var(--groepkleur,#3b6ff0); }
+.groepkaart.dit{ box-shadow:0 0 0 2px var(--accent), var(--schaduw-2); }
+.groepkop{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+.groepkaart-naam{ font-size:1.15rem; font-weight:600; letter-spacing:-.015em; }
+.ditlabel{ font-size:.68rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+           color:var(--accent); background:var(--accent-zacht); padding:2px 8px; border-radius:var(--rond-vol); }
+/* Voortgangsbalkje op een groepskaart. Bewust NIET '.balk': zo heet de
+   bovenbalk van het bord al, en niet '.voortgang': zo heet de ring om een
+   picto al. In de voorvertoning staan alle stijlen samen op één pagina,
+   dus een dubbele naam sloopt daar het andere scherm. */
+.groepbalkje{ height:7px; border-radius:99px; background:var(--vlak-2); overflow:hidden; }
+.groepbalkje span{ display:block; height:100%; background:var(--goed); border-radius:99px; }
+.beurtregel{ font-size:.8rem; color:var(--inkt-3); }
+.groepacties{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:4px; }
+
+.paneel{ background:var(--vlak); border-radius:var(--rond-m); box-shadow:var(--schaduw-1);
+         padding:20px 22px; margin-top:22px; }
+.paneelkop{ font-size:.74rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+            color:var(--inkt-3); margin-bottom:10px; }
+.hint{ font-size:.87rem; color:var(--inkt-3); line-height:1.55; max-width:66ch; }
+.leegvak{ padding:30px; border:1.5px dashed var(--lijn); border-radius:var(--rond-m); text-align:center; }
+.knoprij-onder{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+
+/* wie er bij een groep mag */
+.ledenlijst{ margin:16px 0 4px; }
+.ledenrij{ display:flex; align-items:center; justify-content:space-between; gap:14px;
+           padding:11px 14px; border-radius:12px; background:var(--vlak-2);
+           margin-bottom:8px; }
+.ledenrij.aan{ background:var(--accent-zacht); }
+.ledennaam{ font-size:.95rem; font-weight:550; color:var(--inkt); }
+.ledenmail{ font-size:.8rem; color:var(--inkt-3); margin-top:2px; }
+.ledenrij.wacht{ background:var(--let-op-zacht); }
+.restvak-kop{ font-size:.74rem; font-weight:600; letter-spacing:.055em;
+              text-transform:uppercase; color:var(--inkt-3); margin:18px 0 8px; }
+
+/* het uitnodigingsblad */
+.veldrij{ margin:16px 0; }
+.veldlabel{ display:block; font-size:.83rem; font-weight:550; color:var(--inkt-2);
+            margin-bottom:7px; letter-spacing:-.008em; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <nav class="zijbalk">
+    <div class="zij-kop">
+      <div class="n" id="zij-school">—</div>
+      <div class="s">Schoolbeheer</div>
+    </div>
+    <div class="zij-menu" id="zij-menu"></div>
+    <div class="zij-onder" id="zij-onder">
+      <a class="zij-link" href="beheer.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 l-7 7 7 7"></path></svg>
+        Naar het groepsbeheer
+      </a>
+    </div>
+  </nav>
+  <main class="inhoud" id="inhoud"></main>
+</div>
+
+<div class="overlay" id="overlay"><div class="blad" id="blad"></div></div>
+<div class="melding" id="melding"></div>
+
+<script src="src/kb-app.js?v=26augustus2026"></script>
+<script src="src/kb-data.js?v=26augustus2026"></script>
+<script src="src/kb-supabase.js?v=26augustus2026"></script>
+<script src="src/kb-media.js?v=26augustus2026"></script>
+<script src="src/kb-sync.js?v=26augustus2026"></script>
+<script src="src/kb-verbinding.js?v=26augustus2026"></script>
+<script src="src/kb-school.js?v=26augustus2026"></script>
+</body>
+</html>
