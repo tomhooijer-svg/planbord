@@ -8,6 +8,11 @@
 window.KB_APP = {
   id: 'planbord',
   naam: 'Planbord',
+  /* De vingerafdruk van de code in deze uitgave. Staat onder in het
+     bordmenu en bij Groep, zodat je twee uitgaven van dezelfde dag uit
+     elkaar kunt houden -- en kunt zien of een wijziging bij je is
+     aangekomen. */
+  bouw: '38901284',
   panelen: ['vandaag','week','themas','taken','doelen','observaties','groep'],
   ander: { id:'keuzebord', naam:'Keuzebord', adres:'../keuzebord-app/' }
 };
