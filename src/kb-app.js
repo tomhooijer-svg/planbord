@@ -12,7 +12,7 @@ window.KB_APP = {
      bordmenu en bij Groep, zodat je twee uitgaven van dezelfde dag uit
      elkaar kunt houden -- en kunt zien of een wijziging bij je is
      aangekomen. */
-  bouw: 'd37c02db',
+  bouw: 'be1bb100',
   panelen: ['vandaag','week','themas','taken','doelen','observaties','groep'],
   ander: { id:'keuzebord', naam:'Keuzebord', adres:'../keuzebord-app/' }
 };
