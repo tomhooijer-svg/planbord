@@ -5,7 +5,7 @@ langs verwonderen, vragen, onderzoeken en betekenis geven, taken maken
 die aan doelen hangen, en observeren wat een kind al kan.
 
 Het bord zelf -- kiezen, hoeken, picto's, statistieken -- zit in
-**[Keuzebord](https://tomhooijer-svg.github.io/keuzebord-app/)**. De twee
+**[Keuzebord](https://app.pixelplein.nl/)**. De twee
 delen dezelfde gegevens en hetzelfde inloggen; een knop onderin het menu
 brengt je van de een naar de ander, met de groep mee.
 
